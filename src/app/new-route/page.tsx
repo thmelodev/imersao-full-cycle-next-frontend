@@ -34,7 +34,8 @@ export async function searchDirections(source: string, destination: string) {
   const placeDestinationId = destinationData.candidates[0].place_id;
 
   const directionsResponse = await fetch(
-    `http://localhost:3000/directions?originId=${placeSourceId}&destinationId=${placeDestinationId}`, {
+    `http://localhost:3000/directions?originId=${placeSourceId}&destinationId=${placeDestinationId}`,
+    {
       // cache: "force-cache",
       // next: {
       //   revalidate: 1 * 60 * 60 * 24, // 1 day
@@ -65,14 +66,14 @@ export async function NewRoutePage({
   const result =
     source && destination ? await searchDirections(source, destination) : null;
 
-  let directionsData =  null;
+  let directionsData = null;
   let placeSourceId = null;
-  let placeDestinationId =  null;
+  let placeDestinationId = null;
 
-  if(result){
-    directionsData = result.directionsData
-    placeSourceId = result.placeSourceId
-    placeDestinationId = result.placeDestinationId
+  if (result) {
+    directionsData = result.directionsData;
+    placeSourceId = result.placeSourceId;
+    placeDestinationId = result.placeDestinationId;
   }
 
   return (
@@ -139,7 +140,7 @@ export async function NewRoutePage({
                 {directionsData.routes[0].legs[0].duration.text}
               </li>
             </ul>
-            <NewRouteForm >
+            <NewRouteForm>
               {placeSourceId && (
                 <input type="hidden" name="sourceId" value={placeSourceId} />
               )}
@@ -160,7 +161,7 @@ export async function NewRoutePage({
           </div>
         )}
       </div>
-      <MapNewRoute directionsData={directionsData}/>
+      <MapNewRoute directionsData={directionsData} />
     </div>
   );
 }

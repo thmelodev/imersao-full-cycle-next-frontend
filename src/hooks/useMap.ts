@@ -9,7 +9,7 @@ export function useMap(containerRef: React.RefObject<HTMLDivElement | null> ) {
   useEffect(() => {
     (async () => {
       const loader = new Loader({
-        apiKey: "AIzaSyDKeqPucchVKJWKCPnJxnwiCTwJgCXI--I" as string,
+        apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
         libraries: ["routes", "geometry", "marker"],
       });
       const [, , , position] = await Promise.all([
@@ -23,6 +23,7 @@ export function useMap(containerRef: React.RefObject<HTMLDivElement | null> ) {
         zoom: 15,
         center: position,
       });
+      console.log('Mapa inicializado:', map);
       setMap(map);
     })();
   }, [containerRef]);

@@ -16,7 +16,8 @@ export function MapNewRoute(props: MapNewRouteProps){
     const map = useMap(mapContainerRef);
 
     useEffect(() => {
-
+        console.log('directionsData2:', directionsData);
+        console.log('map:', map);
         if(!map || !directionsData) return
 
         map.removeAllRoutes()
